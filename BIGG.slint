@@ -1,0 +1,42 @@
+#! /usr/bin/bash
+# Author Gaurav
+# Univeristat Potsdam
+# Date: 2024-6-25
+
+# a slint UI for the BIGG metabolome analyzer
+# this will give you all the associated information with the MetaNetX
+metabolite=$(slint-viewer - --save-data - << EOF
+import { StandardButton, GridBox, LineEdit } from "std-widgets.slint";
+component UserDataDialog inherits Dialog {
+    property name <=> name-le.condasearch;
+    StandardButton { kind: ok; }
+    StandardButton { kind: cancel; }
+    preferred-width: 300px;
+    GridBox {
+        Row {
+            Text { text: "Enter your conda search:"; }
+            name-le := LineEdit { }
+        }
+        }
+    }
+}
+EOF
+)
+# read -p "Please enter the metabolite:" metabolite
+wget -F $(echo "wget -F http://bigg.ucsd.edu/universal/metabolites/${metabolite}") -O output.txt
+InChlKey=$(grep "inchikey" output.txt | cut -f 2 -d ">" | cut -f 1 -d "<")
+CHEBI=$(grep "CHEBI" output.txt | awk '{ print $2 }' | cut -f 3 -d ":")
+seed_compound=$(grep "cpd" output.txt | cut -f 3 -d "." | cut -f 2 -d "/" | cut -f 1 -d " " )
+metanextx=$(grep "CHEBI" output.txt | awk '{ print $2 }' | cut -f 3 -d ":")
+biocyc=$(grep "biocyc" output.txt | awk '{ print $2 }' | cut -f 5 -d "/")
+kegg=$(grep "kegg.compound" output.txt | awk '{ print $2 }' | cut -f 5 -d "/")
+reactome=$(grep "reactome" output.txt | awk '{ print $2 }' | grep "^href" | cut -f 5 -d "/")
+   echo "The seed compound is:${seed_compound}"
+   echo "The InChlKey is: ${InChlKey}"
+   echo "The CHEBI is: ${CHEBI}"
+   echo "The metanextx is: ${metanextx}"
+   echo "The biocyc is: ${biocyc}"
+   echo "The kegg is:${kegg}"
+   echo "The reactome is: ${reactome}"
+   rm -rf output.txt
+echo "Thank you for using the metabolite and the slint userinterface"
