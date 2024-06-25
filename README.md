@@ -1,7 +1,7 @@
 # BIGG-slint-interface
 
 - a slint interface to the BIGG modeler database establishing all the links to the metanextx
-
+- faster implementation of the regular expression plus awk so that you can pass to the filestream.io just like the std.io.
 ```
 sh metabolome.sh
 Please enter the metabolite:10fthf
@@ -30,3 +30,11 @@ The reactome is: R-ALL-419151"
 R-ALL-5389850"
 Thank you for using the metabolite and the slint userinterface
 ```
+- if you want to run the shell version ucomment the line 25 and add run without slint. 
+
+Gaurav \
+Academic Staff Member \
+Bioinformatics \
+Institute for Biochemistry and Biology \
+University of Potsdam \
+Potsdam,Germany
