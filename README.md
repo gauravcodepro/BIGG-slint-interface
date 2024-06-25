@@ -1,7 +1,7 @@
 # BIGG-slint-interface
 
 - a slint interface to the BIGG modeler database establishing all the links to the metanextx
-- faster implementation of the regular expression plus awk so that you can pass to the filestream.io just like the std.io.
+- faster implementation of the regular expression plus awk so that it reads to filestream.io just like the std.io.
 ```
 sh metabolome.sh
 Please enter the metabolite:10fthf
