@@ -7,13 +7,13 @@
 metabolite=$(slint-viewer - --save-data - << EOF
 import { StandardButton, GridBox, LineEdit } from "std-widgets.slint";
 component UserDataDialog inherits Dialog {
-    property name <=> name-le.condasearch;
+    property name <=> name-le.metabolomesearch;
     StandardButton { kind: ok; }
     StandardButton { kind: cancel; }
     preferred-width: 300px;
     GridBox {
         Row {
-            Text { text: "Enter your conda search:"; }
+            Text { text: "Enter your metabolome search:"; }
             name-le := LineEdit { }
         }
         }
